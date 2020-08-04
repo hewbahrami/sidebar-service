@@ -1,0 +1,27 @@
+{
+  "name": "sidebar",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HRR47-FEC-Burke/sidebar.git"
+  },
+  "author": "stanley",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HRR47-FEC-Burke/sidebar/issues"
+  },
+  "homepage": "https://github.com/HRR47-FEC-Burke/sidebar#readme",
+  "dependencies": {
+    "babel": "^6.23.0",
+    "babel-loader": "^8.1.0",
+    "jquery": "^3.5.1",
+    "jsx": "^0.9.89",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  }
+}
