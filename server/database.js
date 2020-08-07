@@ -1,7 +1,4 @@
 const mongodb = require('mongodb');
-//const url = require('url');
-//const http = require('http');
-//const axios = require('axios');
 
 const mongoClient = mongodb.MongoClient;
 
@@ -23,8 +20,6 @@ var getAllProductAndSellerInfo = (callback) => {
     }
   });
 };
-
-//"_id" : ObjectId("5f2c4f80bcbd4d839160560b")
 
 var database = {
   getAllProductAndSellerInfo: getAllProductAndSellerInfo
