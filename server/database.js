@@ -10,9 +10,6 @@ var getAllProductAndSellerInfo = (callback) => {
     if (err) {
       throw err;
     } else {
-      //should be connected
-      console.log('no error');
-
       //try to access the db and get some data
       var db = client.db('reburke');
       db.collection('reburke').find({}).toArray((err, result) => {

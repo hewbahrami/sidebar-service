@@ -13,7 +13,7 @@ class Sidebar extends React.Component {
   getProductAndSeller () {
     axios.get('http://localhost:3210/api')
       .then((result) => {
-        console.log(result.data);
+        //console.log(result.data);
         this.setState({
           product: result.data.product,
           seller: result.data.seller
@@ -26,17 +26,17 @@ class Sidebar extends React.Component {
 
   condition () {
     return (
-      <div>This product is {this.state.product.condition}</div>
+      <div className="sb-smallText sb-green">This product is {this.state.product.condition}</div>
     );
   }
 
   cost () {
     return (
-      <div>
-        <div>Shipping fee: {this.state.product.shippingFee}</div>
-        <div>${this.state.product.priceOriginal}</div>
-        <div>${this.state.product.priceActual}</div>
-        <div>+Shipping</div>
+      <div className="sb-bigSpace">
+        <div className="sb-smallText">Shipping fee: {this.state.product.shippingFee}</div>
+        <div className="sb-lineThroughText">${this.state.product.priceOriginal}</div>
+        <div className="sb-bold sb-bigText">${this.state.product.priceActual}</div>
+        <div className="sb-smallText sb-grey">+Shipping</div>
       </div>
     )
   }
@@ -44,7 +44,7 @@ class Sidebar extends React.Component {
   openToOffer () {
     if (this.state.product.isOpenToOffers) {
       return (
-        <div>This seller is open to offers</div>
+        <div className="sb-smallText sb-orange">This seller is open to offers</div>
       )
     }
   }
@@ -52,9 +52,9 @@ class Sidebar extends React.Component {
   shippingSpeed () {
     if (this.state.seller.isQuickShipper) {
       return (
-        <div>
-          <div>Still Shipping Quickly</div>
-          <div>This seller is shipping orders within 24 hours, on average.</div>
+        <div className="sb-bigSpace">
+          <div className="sb-smallText sb-bold">Still Shipping Quickly</div>
+          <div className="sb-smallText sb-grey">This seller is shipping orders within 24 hours, on average.</div>
         </div>
       )
     }
@@ -62,23 +62,23 @@ class Sidebar extends React.Component {
 
   confidence () {
     return (
-    <div>
-      <div>Buy With Confidence</div>
-      <div>Reverb Protection has you covered. We provide a safe community for finding the gear you want</div>
+    <div className="sb-bigSpace">
+      <div className="sb-smallText sb-bold">Buy With Confidence</div>
+      <div className="sb-smallText sb-grey">Reverb Protection has you covered. We provide a safe community for finding the gear you want</div>
     </div>
     );
   }
 
-  sellerRaiting () {
-    var rating = '';
-    for (var i = 0; i < this.state.seller.reviews.rating; i++){
-      rating += '*';
+  sellerRaiting (rating) {
+    var text = '';
+    for (var i = 0; i < rating; i++){
+      text += '★';
     }
-    for (var i = rating.length; i < 5; i++){
-      rating += '-';
+    for (var i = text.length; i < 5; i++){
+      text += '☆';
     }
     return (
-      <div>{rating}</div>
+      <div className="sb-orange">{text}</div>
     );
   }
 
@@ -95,28 +95,30 @@ class Sidebar extends React.Component {
     if (this.state.product.name === undefined) {
       this.getProductAndSeller();
     }
-    return (<div>
-      <div>{this.state.product.name}</div>
+    return (<div className="sb-whole">
+      <div className="sb-bigText">{this.state.product.name}</div>
       {this.condition()}
       {this.cost()}
-      <button>Add To Cart</button>
+      <button className="sb-bigButton">Add to Cart</button>
       <div>
-        <button>Make an Offer</button>
-        <button>* Watch</button>
+        <button className="sb-smallButton">Make an Offer</button>
+        <button className="sb-smallButton">☆ Watch</button>
       </div>
       {this.openToOffer()}
       {this.shippingSpeed()}
+      <div className="sb-grey">--------------------------------------------------</div>
       {this.confidence()}
-      <div>
+      <div className="sb-grey">--------------------------------------------------</div>
+      <div className="sb-smallText sb-bigSpace sb-grey">
         Shipped From
-        <div>{this.state.seller.name}</div>
+        <div className="sb-bold sb-black">{this.state.seller.name}</div>
         <div>{this.state.seller.address}</div>
-        {this.sellerRaiting()}
+        {this.sellerRaiting(this.state.seller.reviews.rating)}
         {this.joinedYear()}
       </div>
       <div>
-        <button>Message Seller</button>
-        <button>Payment and Returns</button>
+        <button className="sb-smallButton sb-smallText">Message Seller</button>
+        <button className="sb-smallButton sb-smallText">Payment and Returns</button>
       </div>
     </div>)
   }
