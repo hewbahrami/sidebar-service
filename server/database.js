@@ -1,7 +1,7 @@
 const mongodb = require('mongodb');
-const url = require('url');
-const http = require('http');
-const axios = require('axios');
+//const url = require('url');
+//const http = require('http');
+//const axios = require('axios');
 
 const mongoClient = mongodb.MongoClient;
 
