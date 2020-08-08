@@ -2,21 +2,21 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
 
-import Sidebar from './sidebar.jsx';
+import Sidebar from './sidebar';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
-    //put some default value so that the page doesn't throw errors when loading
+    // put some default value so that the page doesn't throw errors when loading
     this.state = {
       product: {},
-      seller: {reviews: {rating: 0}}
-    }
+      seller: { reviews: { rating: 0 } }
+    };
   }
 
-  //when initializing the page
-  componentDidMount () {
-    //send a get request for the product and seller infomation
+  // when initializing the page
+  componentDidMount() {
+    // send a get request for the product and seller infomation
     axios.get('http://localhost:3210/api')
       .then((result) => {
         this.setState({
@@ -25,14 +25,16 @@ class App extends React.Component {
         });
       })
       .catch((err) => {
-        console.log('error in get: ' + err);
+        throw err;
       });
   }
 
-  render () {
-    return (<div>
-      <Sidebar product={this.state.product} seller={this.state.seller}/>
-    </div>)
+  render() {
+    return (
+      <div>
+        <Sidebar product={this.state.product} seller={this.state.seller} />
+      </div>
+    );
   }
 }
 
