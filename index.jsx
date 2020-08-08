@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
 
-import Sidebar from './Sidebar.jsx';
+import Sidebar from './sidebar.jsx';
 
 class App extends React.Component {
   constructor(props) {
