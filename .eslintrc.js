@@ -35,6 +35,7 @@ module.exports = {
     'no-plusplus': 0,
     'react/button-has-type': 0,
     'react/destructuring-assignment': 0,
-    'no-console': 0
+    'no-console': 0,
+    'import/extensions': 0
   }
 };
