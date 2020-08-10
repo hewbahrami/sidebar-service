@@ -129,7 +129,7 @@ class Sidebar extends React.Component {
   componentDidMount() {
     // send a get request for the product and seller infomation
     // can pass different variable between 0 and 99 into params id to get certain product/seller
-    axios.get('http://localhost:3210/api', { params: { id: 1 } })
+    axios.get('http://localhost:3210/api', { params: { id: 0 } })
       .then((result) => {
         this.setState({
           product: result.data.product,
