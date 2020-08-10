@@ -1,113 +1,171 @@
 import React from 'react';
+import axios from 'axios';
 
-var Sidebar = ({product, seller}) => {
-  var isWatched = false;
+class Sidebar extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      product: props.product,
+      seller: props.seller,
+      isWatched: false
+    };
+  }
 
-  var condition = () => {
+  // when initializing the page
+  componentDidMount() {
+    // send a get request for the product and seller infomation
+    // can pass different variable between 0 and 99 into params id to get certain product/seller
+    axios.get('http://localhost:3210/api', { params: { id: 0 } })
+      .then((result) => {
+        this.setState({
+          product: result.data.product,
+          seller: result.data.seller
+        });
+      })
+      .catch((err) => {
+        throw err;
+      });
+  }
+
+  condition() {
     return (
-      <div className="sb-smallText sb-green">This product is {product.condition}</div>
+      <div className="sb-smallText sb-green">
+        This product is {this.state.product.condition}
+      </div>
     );
-  };
+  }
 
-  var cost = () => {
+  cost() {
     return (
       <div className="sb-bigSpace">
-        <div className="sb-smallText">Shipping fee: {product.shippingFee}</div>
-        <div className="sb-lineThroughText">${product.priceOriginal}</div>
-        <div className="sb-bold sb-bigText">${product.priceActual}</div>
-        <div className="sb-smallText sb-grey">+Shipping</div>
+        <div className="sb-smallText">
+          Shipping fee: {this.state.product.shippingFee}
+        </div>
+        <div className="sb-lineThroughText">
+          ${this.state.product.priceOriginal}
+        </div>
+        <div className="sb-bold sb-bigText">
+          ${this.state.product.priceActual}
+        </div>
+        <div className="sb-smallText sb-grey">
+          +Shipping
+        </div>
       </div>
-    )
-  };
+    );
+  }
 
-  var watchProduct = () => {
-    if (isWatched) {
-      //set button text to ★ Watch
-      console.log('★ Watch');
+  watchProduct() {
+    // get the watch button
+    var watchButton = document.getElementById('watchButton');
+    var currentlyWatched = this.state.isWatched;
+    if (currentlyWatched) {
+      // set button text to ★ Watch
+      watchButton.innerHTML = '★ Watch';
     } else {
-      //set button text to ☆ Watch
-      console.log('☆ Watch');
+      // set button text to ☆ Watch
+      watchButton.innerHTML = '☆ Watch';
     }
 
-    isWatched = ! isWatched;
-  };
+    this.setState({
+      isWatched: !currentlyWatched
+    });
+  }
 
-  var openToOffer = () => {
-    if (product.isOpenToOffers) {
+  openToOffer() {
+    if (this.state.product.isOpenToOffers) {
       return (
         <div className="sb-smallText sb-orange">This seller is open to offers</div>
-      )
+      );
     }
-  };
+  }
 
-   var shippingSpeed = () => {
-    if (seller.isQuickShipper) {
+  shippingSpeed() {
+    if (this.state.seller.isQuickShipper) {
       return (
         <div className="sb-bigSpace">
-          <div className="sb-smallText sb-bold">Still Shipping Quickly</div>
-          <div className="sb-smallText sb-grey">This seller is shipping orders within 24 hours, on average.</div>
+          <div className="sb-smallText sb-bold">
+            Still Shipping Quickly
+          </div>
+          <div className="sb-smallText sb-grey">
+            This seller is shipping orders within 24 hours, on average.
+          </div>
         </div>
-      )
+      );
     }
-  };
+  }
 
-  var confidence = () => {
+  confidence() {
+    const text = 'Reverb Protection has you covered. We provide a safe community for finding the gear you want';
     return (
-    <div className="sb-bigSpace">
-      <div className="sb-smallText sb-bold">Buy With Confidence</div>
-      <div className="sb-smallText sb-grey">Reverb Protection has you covered. We provide a safe community for finding the gear you want</div>
-    </div>
+      <div className="sb-bigSpace">
+        <div className="sb-smallText sb-bold">
+          Buy With Confidence
+        </div>
+        <div className="sb-smallText sb-grey">
+          {text}
+        </div>
+      </div>
     );
-  };
+  }
 
-  var sellerRaiting = (rating) => {
-    var text = '';
-    for (var i = 0; i < rating; i++){
+  sellerRaiting(rating) {
+    let text = '';
+    for (var i = 0; i < rating; i++) {
       text += '★';
     }
-    for (var i = text.length; i < 5; i++){
+    for (var i = text.length; i < 5; i++) {
       text += '☆';
     }
     return (
-      <div className="sb-orange">{text}</div>
+      <div className="sb-orange">
+        {text}
+      </div>
     );
-  };
+  }
 
-  var joinedYear = () => {
+  joinedYear() {
     return (
       <div>
         <div>Joined Reverb</div>
-        <div>{seller.joinedYear}</div>
+        <div>{this.state.seller.joinedYear}</div>
       </div>
-    )
-  };
+    );
+  }
 
-  return (<div className="sb-whole">
-    <div className="sb-bigText">{product.name}</div>
-    {condition()}
-    {cost()}
-    <button className="sb-bigButton">Add to Cart</button>
-    <div>
-      <button className="sb-smallButton">Make an Offer</button>
-      <button className="sb-smallButton" onClick={watchProduct.bind(this)}>☆ Watch</button>
-    </div>
-    {openToOffer()}
-    {shippingSpeed()}
-    <div className="sb-grey">--------------------------------------------------</div>
-    {confidence()}
-    <div className="sb-grey">--------------------------------------------------</div>
-    <div className="sb-smallText sb-bigSpace sb-grey">
-      Shipped From
-      <div className="sb-bold sb-black">{seller.name}</div>
-      <div>{seller.address}</div>
-      {sellerRaiting(seller.reviews.rating)}
-      {joinedYear()}
-    </div>
-    <div>
-      <button className="sb-smallButton sb-smallText">Message Seller</button>
-      <button className="sb-smallButton sb-smallText">Payment and Returns</button>
-    </div>
-  </div>)
-};
+  render() {
+    return (
+      <div className="sb-whole">
+        <div className="sb-bigText">{this.state.product.name}</div>
+        {this.condition()}
+        {this.cost()}
+        <button className="sb-bigButton">Add to Cart</button>
+        <div>
+          <button className="sb-smallButton">
+            Make an Offer
+          </button>
+          <button className="sb-smallButton" id="watchButton" onClick={this.watchProduct.bind(this)}>
+            ★ Watch
+          </button>
+        </div>
+        {this.openToOffer()}
+        {this.shippingSpeed()}
+        <div className="sb-grey">--------------------------------------------------</div>
+        {this.confidence()}
+        <div className="sb-grey">--------------------------------------------------</div>
+        <div className="sb-smallText sb-bigSpace sb-grey">
+          Shipped From
+          <div className="sb-bold sb-black">{this.state.seller.name}</div>
+          <div>{this.state.seller.address}</div>
+          {this.sellerRaiting(this.state.seller.reviews.rating)}
+          {this.joinedYear()}
+        </div>
+        <div>
+          <button className="sb-smallButton sb-smallText">Message Seller</button>
+          <button className="sb-smallButton sb-smallText">Payment and Returns</button>
+        </div>
+      </div>
+    );
+  }
+}
 
 export default Sidebar;
