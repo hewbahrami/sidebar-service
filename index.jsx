@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import axios from 'axios';
+// import axios from 'axios';
 
 import Sidebar from './sidebar.jsx';
 
@@ -14,7 +14,7 @@ class App extends React.Component {
     };
   }
 
-  // when initializing the page
+  /* // when initializing the page
   componentDidMount() {
     // send a get request for the product and seller infomation
     axios.get('http://localhost:3210/api')
@@ -27,7 +27,7 @@ class App extends React.Component {
       .catch((err) => {
         throw err;
       });
-  }
+  } */
 
   render() {
     return (

@@ -36,6 +36,7 @@ module.exports = {
     'react/button-has-type': 0,
     'react/destructuring-assignment': 0,
     'no-console': 0,
-    'import/extensions': 0
+    'import/extensions': 0,
+    'class-methods-use-this': 0
   }
 };
