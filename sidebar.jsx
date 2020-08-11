@@ -23,7 +23,7 @@ class Sidebar extends React.Component {
         });
       })
       .catch((err) => {
-        throw err;
+        // throw err;
       });
   }
 
@@ -59,11 +59,11 @@ class Sidebar extends React.Component {
     var watchButton = document.getElementById('watchButton');
     var currentlyWatched = this.state.isWatched;
     if (currentlyWatched) {
-      // set button text to ★ Watch
-      watchButton.innerHTML = '★ Watch';
-    } else {
       // set button text to ☆ Watch
       watchButton.innerHTML = '☆ Watch';
+    } else {
+      // set button text to ★ Watch
+      watchButton.innerHTML = '★ Watch';
     }
 
     this.setState({
@@ -144,7 +144,7 @@ class Sidebar extends React.Component {
             Make an Offer
           </button>
           <button className="sb-smallButton" id="watchButton" onClick={this.watchProduct.bind(this)}>
-            ★ Watch
+            ☆ Watch
           </button>
         </div>
         {this.openToOffer()}

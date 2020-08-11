@@ -55,6 +55,7 @@ exports[`testing on the sidebar component 1`] = `
     </button>
     <button
       className="sb-smallButton"
+      id="watchButton"
       onClick={[Function]}
     >
       ☆ Watch
