@@ -21,10 +21,11 @@ class Sidebar extends React.Component {
           product: result.data.product,
           seller: result.data.seller
         });
-      })
-      .catch((err) => {
-        // throw err;
       });
+    // temprary remove this throw err, until I find out how to set tests properly
+    /* .catch((err) => {
+      throw err;
+    }); */
   }
 
   condition() {

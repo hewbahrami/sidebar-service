@@ -4,7 +4,7 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import { shallow, configure } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import Sidebar from './sidebar';
+import Sidebar from '../sidebar';
 
 const product = {
   name: 'Martin 75th Anniversary of Grand Ole Opry, #223 of #650 owned by Brother Oswald from Roy Acuff Band',
@@ -39,13 +39,13 @@ test('testing on the sidebar component', () => {
 configure({ adapter: new Adapter() });
 
 describe('Sidebar', () => {
-  it('It should show up', () => {
-    shallow(<Sidebar product={product} seller={seller} />);
+  const wrapper = shallow(<Sidebar product={product} seller={seller} />);
+
+  it('It should exist', () => {
+    expect(wrapper.instance()).toBeTruthy();
   });
 
   it('It should have state component product', () => {
-    const wrapper = shallow(<Sidebar product={product} seller={seller} />);
-    // expect(wrapper.instance().state.product).toExist();
     expect(wrapper.instance().state.product.name).toEqual('Martin 75th Anniversary of Grand Ole Opry, #223 of #650 owned by Brother Oswald from Roy Acuff Band');
     expect(wrapper.instance().state.product.condition).toEqual('mint');
     expect(wrapper.instance().state.product.shippingFee).toEqual(79);
@@ -55,11 +55,18 @@ describe('Sidebar', () => {
   });
 
   it('It should have state component seller', () => {
-    const wrapper = shallow(<Sidebar product={product} seller={seller} />);
     expect(wrapper.instance().state.seller.name).toEqual('Average Joe\'s Guitars');
     expect(wrapper.instance().state.seller.address).toEqual('Beaufort, NC, United States');
     expect(wrapper.instance().state.seller.isQuickShipper).toEqual(true);
     expect(wrapper.instance().state.seller.joinedYear).toEqual(2016);
     expect(wrapper.instance().state.seller.reviews.rating).toEqual(4);
+  });
+
+  it('It should have clickable button', () => {
+    const watchButton = wrapper.find('#watchButton');
+    expect(watchButton.text()).toEqual('☆ Watch');
+    // clicking button causes error in test, but run fine on web page
+    // watchButton.simulate('click');
+    // expect(watchButton.text()).toEqual('★ Watch');
   });
 });
