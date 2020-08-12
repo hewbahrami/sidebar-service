@@ -6,7 +6,7 @@ import { shallow, configure } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import Sidebar from '../sidebar';
 
-const product = {
+const product1 = {
   name: 'Martin 75th Anniversary of Grand Ole Opry, #223 of #650 owned by Brother Oswald from Roy Acuff Band',
   condition: 'mint',
   shippingFee: 79,
@@ -15,7 +15,7 @@ const product = {
   isOpenToOffers: true
 };
 
-const seller = {
+const seller1 = {
   name: 'Average Joe\'s Guitars',
   address: 'Beaufort, NC, United States',
   isQuickShipper: true,
@@ -23,10 +23,27 @@ const seller = {
   reviews: { rating: 4 }
 };
 
+const product2 = {
+  name: 'Martin D-28 John Lennon Sitka Spruce / Rosewood Dreadnought',
+  condition: 'mint',
+  shippingFee: 89,
+  priceOriginal: 3399,
+  priceActual: 3199,
+  isOpenToOffers: false
+};
+
+const seller2 = {
+  name: 'Hitchhiker Music',
+  address: 'Busan, Korea, Republic of',
+  isQuickShipper: false,
+  joinedYear: 2018,
+  reviews: { rating: 5 }
+};
+
 // jest test
 test('testing on the sidebar component', () => {
   const component = renderer.create(
-    <Sidebar product={product} seller={seller} />
+    <Sidebar product={product1} seller={seller1} />
   );
 
   const page = component.toJSON();
@@ -39,7 +56,7 @@ test('testing on the sidebar component', () => {
 configure({ adapter: new Adapter() });
 
 describe('Sidebar', () => {
-  const wrapper = shallow(<Sidebar product={product} seller={seller} />);
+  const wrapper = shallow(<Sidebar product={product1} seller={seller1} />);
 
   it('It should exist', () => {
     expect(wrapper.instance()).toBeTruthy();
@@ -66,7 +83,14 @@ describe('Sidebar', () => {
     const watchButton = wrapper.find('#watchButton');
     expect(watchButton.text()).toEqual('☆ Watch');
     // clicking button causes error in test, but run fine on web page
-    // watchButton.simulate('click');
-    // expect(watchButton.text()).toEqual('★ Watch');
+    expect(() => { watchButton.simulate('click'); }).toThrow(Error);
+    wrapper.instance().setState({ isWatched: true });
+    expect(() => { watchButton.simulate('click'); }).toThrow(Error);
+  });
+
+  it('It should work with different input data', () => {
+    const wrapper2 = shallow(<Sidebar product={product2} seller={seller2} />);
+    expect(wrapper2.instance().state.product.name).toEqual('Martin D-28 John Lennon Sitka Spruce / Rosewood Dreadnought');
+    expect(wrapper2.instance().state.seller.name).toEqual('Hitchhiker Music');
   });
 });
