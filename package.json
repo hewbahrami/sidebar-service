@@ -7,7 +7,7 @@
     "server-dev": "nodemon server/server.js",
     "build": "webpack --config webpack.config.js",
     "seed": "node ./server/seeding.js",
-    "test": "jest"
+    "test": "jest --detectOpenHandles --coverage"
   },
   "repository": {
     "type": "git",
@@ -40,6 +40,8 @@
     "webpack": "^4.44.1"
   },
   "devDependencies": {
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.3",
     "eslint": "^7.6.0",
     "eslint-config-airbnb": "^18.2.0",
     "eslint-plugin-import": "^2.22.0",
