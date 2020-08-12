@@ -22,4 +22,4 @@ response.data = {
 
 response.json = () => response.data;
 
-module.esport = response;
+module.exports = response;
