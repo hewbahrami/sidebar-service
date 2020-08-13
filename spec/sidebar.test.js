@@ -5,50 +5,18 @@ import renderer from 'react-test-renderer';
 import { shallow, configure } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import Sidebar from '../sidebar';
+import { data } from './__mock__/mockProductAndSeller';
 
-const product1 = {
-  name: 'Martin 75th Anniversary of Grand Ole Opry, #223 of #650 owned by Brother Oswald from Roy Acuff Band',
-  condition: 'mint',
-  shippingFee: 79,
-  priceOriginal: 3499,
-  priceActual: 3299,
-  isOpenToOffers: true
-};
-
-const seller1 = {
-  name: 'Average Joe\'s Guitars',
-  address: 'Beaufort, NC, United States',
-  isQuickShipper: true,
-  joinedYear: 2016,
-  reviews: { rating: 4 }
-};
-
-const product2 = {
-  name: 'Martin D-28 John Lennon Sitka Spruce / Rosewood Dreadnought',
-  condition: 'mint',
-  shippingFee: 89,
-  priceOriginal: 3399,
-  priceActual: 3199,
-  isOpenToOffers: false
-};
-
-const seller2 = {
-  name: 'Hitchhiker Music',
-  address: 'Busan, Korea, Republic of',
-  isQuickShipper: false,
-  joinedYear: 2018,
-  reviews: { rating: 5 }
-};
+let { product, seller } = data[0];
 
 // jest test
-test('testing on the sidebar component', () => {
+test('Checks if there is any change in the file appearance when it renders', () => {
   const component = renderer.create(
-    <Sidebar product={product1} seller={seller1} />
+    <Sidebar product={product} seller={seller} />
   );
 
   const page = component.toJSON();
-  // Checks if there is any change in the file appearance
-  // Doesn't check the inside though
+  // doesn't check appearance after request
   expect(page).toMatchSnapshot();
 });
 
@@ -56,7 +24,7 @@ test('testing on the sidebar component', () => {
 configure({ adapter: new Adapter() });
 
 describe('Sidebar', () => {
-  const wrapper = shallow(<Sidebar product={product1} seller={seller1} />);
+  const wrapper = shallow(<Sidebar product={product} seller={seller} />);
 
   it('It should exist', () => {
     expect(wrapper.instance()).toBeTruthy();
@@ -89,7 +57,9 @@ describe('Sidebar', () => {
   });
 
   it('It should work with different input data', () => {
-    const wrapper2 = shallow(<Sidebar product={product2} seller={seller2} />);
+    product = data[1].product;
+    seller = data[1].seller;
+    const wrapper2 = shallow(<Sidebar product={product} seller={seller} />);
     expect(wrapper2.instance().state.product.name).toEqual('Martin D-28 John Lennon Sitka Spruce / Rosewood Dreadnought');
     expect(wrapper2.instance().state.seller.name).toEqual('Hitchhiker Music');
   });
