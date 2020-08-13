@@ -156,7 +156,11 @@ class Sidebar extends React.Component {
           <button className="sb-smallButton">
             Make an Offer
           </button>
-          <button className="sb-smallButton sb-floatRight" id="watchButton" onClick={this.watchProduct.bind(this)}>
+          <button
+            className="sb-smallButton sb-floatRight"
+            id="watchButton"
+            onClick={this.watchProduct.bind(this)}
+          >
             ☆ Watch
           </button>
         </div>
@@ -177,7 +181,9 @@ class Sidebar extends React.Component {
         </section>
         <div>
           <button className="sb-smallButton sb-smallText">Message Seller</button>
-          <button className="sb-smallButton sb-smallText sb-floatRight">Payment and Returns</button>
+          <button className="sb-smallButton sb-smallText sb-floatRight">
+            Payment and Returns
+          </button>
         </div>
       </div>
     );

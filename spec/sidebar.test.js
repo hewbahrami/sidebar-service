@@ -10,13 +10,13 @@ import { data } from './__mock__/mockProductAndSeller';
 let { product, seller } = data[0];
 
 // jest test
+// Checks if there is any change in the file appearance when it renders
 test('testing on the sidebar component', () => {
   const component = renderer.create(
     <Sidebar product={product} seller={seller} />
   );
 
   const page = component.toJSON();
-  // Checks if there is any change in the file appearance when it renders
   // doesn't check appearance after request
   expect(page).toMatchSnapshot();
 });
