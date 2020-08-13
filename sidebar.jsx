@@ -1,5 +1,8 @@
 import React from 'react';
 import axios from 'axios';
+import Confidence from './dist/img/Confidence.png';
+import ShipQuickly from './dist/img/ShipQuickly.png';
+import QuickerShipperImg from './dist/img/QuickShipper.png';
 
 class Sidebar extends React.Component {
   constructor(props) {
@@ -27,8 +30,8 @@ class Sidebar extends React.Component {
 
   condition() {
     return (
-      <div className="sb-smallText sb-green">
-        This product is {this.state.product.condition}
+      <div className="sb-smallText sb-green sb-dashBottomBorder">
+        {this.state.product.condition}
       </div>
     );
   }
@@ -72,7 +75,9 @@ class Sidebar extends React.Component {
   openToOffer() {
     if (this.state.product.isOpenToOffers) {
       return (
-        <div className="sb-smallText sb-orange">This seller is open to offers</div>
+        <div className="sb-smallText sb-goldenrod sb-dialogBubble">
+          This seller is open to offers
+        </div>
       );
     }
   }
@@ -80,12 +85,17 @@ class Sidebar extends React.Component {
   shippingSpeed() {
     if (this.state.seller.isQuickShipper) {
       return (
-        <div className="sb-bigSpace">
-          <div className="sb-smallText sb-bold">
-            Still Shipping Quickly
+        <div className="sb-greyBottomBorder">
+          <div className="sb-bigSpace sb-floatLeft">
+            <img src={ShipQuickly} alt="" />
           </div>
-          <div className="sb-smallText sb-grey">
-            This seller is shipping orders within 24 hours, on average.
+          <div className="sb-bigSpace">
+            <div className="sb-smallText sb-bold">
+              Still Shipping Quickly
+            </div>
+            <div className="sb-smallText sb-grey">
+              This seller is shipping orders within 24 hours, on average.<br /><br />
+            </div>
           </div>
         </div>
       );
@@ -95,12 +105,17 @@ class Sidebar extends React.Component {
   confidence() {
     const text = 'Reverb Protection has you covered. We provide a safe community for finding the gear you want';
     return (
-      <div className="sb-bigSpace">
-        <div className="sb-smallText sb-bold">
-          Buy With Confidence
+      <div className="sb-greyBottomBorder">
+        <div className="sb-bigSpace sb-floatLeft">
+          <img src={Confidence} alt="" />
         </div>
-        <div className="sb-smallText sb-grey">
-          {text}
+        <div className="sb-bigSpace">
+          <div className="sb-smallText sb-bold">
+            Buy With Confidence
+          </div>
+          <div className="sb-smallText sb-grey">
+            {text}
+          </div>
         </div>
       </div>
     );
@@ -141,25 +156,28 @@ class Sidebar extends React.Component {
           <button className="sb-smallButton">
             Make an Offer
           </button>
-          <button className="sb-smallButton" id="watchButton" onClick={this.watchProduct.bind(this)}>
+          <button className="sb-smallButton sb-floatRight" id="watchButton" onClick={this.watchProduct.bind(this)}>
             ☆ Watch
           </button>
         </div>
         {this.openToOffer()}
         {this.shippingSpeed()}
-        <div className="sb-grey">--------------------------------------------------</div>
         {this.confidence()}
-        <div className="sb-grey">--------------------------------------------------</div>
-        <div className="sb-smallText sb-bigSpace sb-grey">
-          Shipped From
-          <div className="sb-bold sb-black">{this.state.seller.name}</div>
-          <div>{this.state.seller.address}</div>
-          {this.sellerRaiting(this.state.seller.reviews.rating)}
-          {this.joinedYear()}
-        </div>
+        <section className="sb-smallText">
+          <div className="sb-bigSpace sb-grey sb-half sb-floatLeft">
+            Shipped From
+            <div className="sb-bold sb-black">{this.state.seller.name}</div>
+            <div>{this.state.seller.address}</div>
+            {this.sellerRaiting(this.state.seller.reviews.rating)}
+            {this.joinedYear()}
+          </div>
+          <div className="sb-extraSpace sb-blue">
+            <img src={QuickerShipperImg} alt="" />
+          </div>
+        </section>
         <div>
           <button className="sb-smallButton sb-smallText">Message Seller</button>
-          <button className="sb-smallButton sb-smallText">Payment and Returns</button>
+          <button className="sb-smallButton sb-smallText sb-floatRight">Payment and Returns</button>
         </div>
       </div>
     );
