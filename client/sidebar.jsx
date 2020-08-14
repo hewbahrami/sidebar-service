@@ -1,23 +1,28 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import axios from 'axios';
+import Style from './style.jsx';
 import Confidence from './img/Confidence.png';
 import ShipQuickly from './img/ShipQuickly.png';
 import QuickerShipperImg from './img/QuickShipper.png';
+
+const PATH = document.location.pathname.substring(1);
 
 class Sidebar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      product: props.product,
-      seller: props.seller,
+      product: {},
+      seller: { reviews: { rating: 0 } },
       isWatched: false
     };
   }
 
   // when initializing the page
   componentDidMount() {
+    console.log(PATH);
     // send a get request for the product and seller infomation
-    axios.get('http://localhost:3210/item/0')
+    axios.get('http://localhost:3210/api/item/0')
       .then((result) => {
         this.setState({
           product: result.data.product,
@@ -146,47 +151,50 @@ class Sidebar extends React.Component {
 
   render() {
     return (
-      <div className="sb-whole">
-        <div className="sb-bigText">{this.state.product.name}</div>
-        {this.condition()}
-        {this.cost()}
-        <button className="sb-bigButton">Add to Cart</button>
-        <div>
-          <button className="sb-smallButton">
-            Make an Offer
-          </button>
-          <button
-            className="sb-smallButton sb-floatRight"
-            id="watchButton"
-            onClick={this.watchProduct.bind(this)}
-          >
-            ☆ Watch
-          </button>
-        </div>
-        {this.openToOffer()}
-        {this.shippingSpeed()}
-        {this.confidence()}
-        <section className="sb-smallText">
-          <div className="sb-bigSpace sb-grey sb-half sb-floatLeft">
-            Shipped From
-            <div className="sb-bold sb-black">{this.state.seller.name}</div>
-            <div>{this.state.seller.address}</div>
-            {this.sellerRaiting(this.state.seller.reviews.rating)}
-            {this.joinedYear()}
+      <div>
+        <Style.Global />
+        <div className="sb-whole">
+          <div className="sb-bigText">{this.state.product.name}</div>
+          {this.condition()}
+          {this.cost()}
+          <button className="sb-bigButton">Add to Cart</button>
+          <div>
+            <button className="sb-smallButton">
+              Make an Offer
+            </button>
+            <button
+              className="sb-smallButton sb-floatRight"
+              id="watchButton"
+              onClick={this.watchProduct.bind(this)}
+            >
+              ☆ Watch
+            </button>
           </div>
-          <div className="sb-extraSpace sb-blue">
-            <img src={QuickerShipperImg} alt="" />
+          {this.openToOffer()}
+          {this.shippingSpeed()}
+          {this.confidence()}
+          <section className="sb-smallText">
+            <div className="sb-bigSpace sb-grey sb-half sb-floatLeft">
+              Shipped From
+              <div className="sb-bold sb-black">{this.state.seller.name}</div>
+              <div>{this.state.seller.address}</div>
+              {this.sellerRaiting(this.state.seller.reviews.rating)}
+              {this.joinedYear()}
+            </div>
+            <div className="sb-extraSpace sb-blue">
+              <img src={QuickerShipperImg} alt="" />
+            </div>
+          </section>
+          <div>
+            <button className="sb-smallButton sb-smallText">Message Seller</button>
+            <button className="sb-smallButton sb-smallText sb-floatRight">
+              Payment and Returns
+            </button>
           </div>
-        </section>
-        <div>
-          <button className="sb-smallButton sb-smallText">Message Seller</button>
-          <button className="sb-smallButton sb-smallText sb-floatRight">
-            Payment and Returns
-          </button>
         </div>
       </div>
     );
   }
 }
 
-export default Sidebar;
+ReactDOM.render(<Sidebar />, document.getElementById('sb'));
