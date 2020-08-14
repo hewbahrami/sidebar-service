@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 
 import Sidebar from './sidebar.jsx';
 
-class App extends React.Component {
+class SB extends React.Component {
   constructor(props) {
     super(props);
     // put some default value so that the page doesn't throw errors when loading
@@ -22,4 +22,4 @@ class App extends React.Component {
   }
 }
 
-ReactDOM.render(<App />, document.getElementById('app'));
+ReactDOM.render(<SB />, document.getElementById('sb'));
