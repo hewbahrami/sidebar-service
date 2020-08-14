@@ -4,6 +4,7 @@ const db = require('./database');
 
 const app = express();
 app.use(express.static(`${__dirname}/../dist`));
+app.use('/', express.static(`${__dirname}/../dist`));
 app.use(bodyParser.json());
 
 app.get('/item/:id', (req, res) => {
