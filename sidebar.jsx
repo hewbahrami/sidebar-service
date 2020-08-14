@@ -1,8 +1,8 @@
 import React from 'react';
 import axios from 'axios';
-import Confidence from './dist/img/Confidence.png';
-import ShipQuickly from './dist/img/ShipQuickly.png';
-import QuickerShipperImg from './dist/img/QuickShipper.png';
+import Confidence from './img/Confidence.png';
+import ShipQuickly from './img/ShipQuickly.png';
+import QuickerShipperImg from './img/QuickShipper.png';
 
 class Sidebar extends React.Component {
   constructor(props) {
@@ -17,8 +17,7 @@ class Sidebar extends React.Component {
   // when initializing the page
   componentDidMount() {
     // send a get request for the product and seller infomation
-    // can pass different variable between 0 and 99 into params id to get certain product/seller
-    axios.get('http://localhost:3210/api', { params: { id: 0 } })
+    axios.get('http://localhost:3210/item/0')
       .then((result) => {
         this.setState({
           product: result.data.product,
