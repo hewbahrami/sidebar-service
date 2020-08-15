@@ -10,7 +10,7 @@ app.use('/', (req, res, next) => {
 });
 
 app.use(express.static(`${__dirname}/../public`));
-app.use('/', express.static(`${__dirname}/../public`));
+app.use('/item/:id', express.static(`${__dirname}/../public`));
 app.use(bodyParser.json());
 
 app.get('/api/item/:id', (req, res) => {
