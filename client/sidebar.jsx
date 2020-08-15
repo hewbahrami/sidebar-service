@@ -2,9 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
 import Style from './style.jsx';
-import Confidence from './img/Confidence.png';
-import ShipQuickly from './img/ShipQuickly.png';
-import QuickerShipperImg from './img/QuickShipper.png';
 
 const PATH = document.location.pathname.substring(1);
 
@@ -91,7 +88,7 @@ class Sidebar extends React.Component {
       return (
         <div className="sb-greyBottomBorder">
           <div className="sb-bigSpace sb-floatLeft">
-            <img src={ShipQuickly} alt="" />
+            <img src="https://live.staticflickr.com/65535/50230580552_b385a5e7a6_t.jpg" alt="" />
           </div>
           <div className="sb-bigSpace">
             <div className="sb-smallText sb-bold">
@@ -111,7 +108,7 @@ class Sidebar extends React.Component {
     return (
       <div className="sb-greyBottomBorder">
         <div className="sb-bigSpace sb-floatLeft">
-          <img src={Confidence} alt="" />
+          <img src="https://live.staticflickr.com/65535/50229716218_21f92f760b_t.jpg" alt="" />
         </div>
         <div className="sb-bigSpace">
           <div className="sb-smallText sb-bold">
@@ -182,7 +179,7 @@ class Sidebar extends React.Component {
               {this.joinedYear()}
             </div>
             <div className="sb-extraSpace sb-blue">
-              <img src={QuickerShipperImg} alt="" />
+              <img src="https://live.staticflickr.com/65535/50230360666_5e65ab8b7c_t.jpg" alt="" />
             </div>
           </section>
           <div>
