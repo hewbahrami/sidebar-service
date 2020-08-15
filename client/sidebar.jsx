@@ -87,7 +87,10 @@ class Sidebar extends React.Component {
       return (
         <div className="sb-greyBottomBorder">
           <div className="sb-bigSpace sb-floatLeft">
-            <img src="https://live.staticflickr.com/65535/50230580552_b385a5e7a6_t.jpg" alt="" />
+            <img
+              src="https://live.staticflickr.com/65535/50230580552_b385a5e7a6_t.jpg"
+              alt=""
+            />
           </div>
           <div className="sb-bigSpace">
             <div className="sb-smallText sb-bold">
@@ -107,7 +110,10 @@ class Sidebar extends React.Component {
     return (
       <div className="sb-greyBottomBorder">
         <div className="sb-bigSpace sb-floatLeft">
-          <img src="https://live.staticflickr.com/65535/50229716218_21f92f760b_t.jpg" alt="" />
+          <img
+            src="https://live.staticflickr.com/65535/50229716218_21f92f760b_t.jpg"
+            alt=""
+          />
         </div>
         <div className="sb-bigSpace">
           <div className="sb-smallText sb-bold">
@@ -178,7 +184,10 @@ class Sidebar extends React.Component {
               {this.joinedYear()}
             </div>
             <div className="sb-extraSpace sb-blue">
-              <img src="https://live.staticflickr.com/65535/50230360666_5e65ab8b7c_t.jpg" alt="" />
+              <img
+                src="https://live.staticflickr.com/65535/50230360666_5e65ab8b7c_t.jpg"
+                alt=""
+              />
             </div>
           </section>
           <div>
