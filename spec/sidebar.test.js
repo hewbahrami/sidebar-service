@@ -4,7 +4,7 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import { shallow, configure } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import Sidebar from '../sidebar';
+import Sidebar from '../client/sidebar';
 import { data } from './__mock__/mockProductAndSeller';
 
 let { product, seller } = data[0];

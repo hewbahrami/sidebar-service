@@ -9,15 +9,14 @@ class Sidebar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      product: {},
-      seller: { reviews: { rating: 0 } },
+      product: props.product || {},
+      seller: props.seller || { reviews: { rating: 0 } },
       isWatched: false
     };
   }
 
   // when initializing the page
   componentDidMount() {
-    console.log(PATH);
     // send a get request for the product and seller infomation
     axios.get(`http://localhost:3210/api/${PATH}`)
       .then((result) => {
