@@ -6,6 +6,7 @@ const Style = {
       width: 462px;
       font-size: large;
       margin: 20px;
+      font-family: Lato, system-ui, -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
     }
 
     .sb-bigButton {
@@ -14,6 +15,7 @@ const Style = {
       background-color: orange;
       color: white;
       padding: 5px 5px;
+      border: 0;
       border-radius: 5px;
     }
     .sb-smallButton {
@@ -22,8 +24,9 @@ const Style = {
       height: 40px;
       background-color: white;
       padding: 5px 5px;
-      border-radius: 5px;
       margin-top: 10px;
+      border: 1px solid lightgray;
+      border-radius: 5px;
     }
 
     .sb-half {
@@ -40,11 +43,11 @@ const Style = {
       font-size: x-large;
     }
     .sb-smallText {
-      font-size: x-small;
+      font-size: .8rem;
     }
 
     .sb-bold {
-      font-weight: bold;
+      font-weight: 700;
     }
 
     .sb-lineThroughText {

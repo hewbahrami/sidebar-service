@@ -3,10 +3,11 @@ const mongodb = require('mongodb');
 
 const mongoClient = mongodb.MongoClient;
 
-var conditions = ['Mint', 'Near Mint', 'Damaged'];
-var trueOrFalse = [true, false];
+const conditions = ['Mint', 'Near Mint', 'Damaged'];
+const trueOrFalse = [true, false];
+const guitarCategories = ['Acoustic', 'Bass', 'Electric'];
 
-var generateProductAndSeller = () => {
+const generateProductAndSeller = () => {
   var productAndSellerArray = [];
 
   for (var i = 0; i < 100; i++) {
@@ -15,7 +16,10 @@ var generateProductAndSeller = () => {
       condition: conditions[Math.floor(Math.random() * 3)],
       shippingFee: Math.floor(Math.random() * 51) + 50, // range 50~100
       priceOriginal: (Math.floor(Math.random() * 21) + 20) * 100, // range 2000~4000
-      isOpenToOffers: trueOrFalse[Math.floor(Math.random() * 2)]
+      isOpenToOffers: trueOrFalse[Math.floor(Math.random() * 2)],
+      category: guitarCategories[Math.floor(Math.random() * 3)],
+      style: `${faker.fake('{{commerce.productAdjective}}')} Guitar`,
+      brand: faker.fake('{{company.companyName}}')
     };
     // need to finish defining product before able to get that value
     product.priceActual = Math.floor(product.priceOriginal * 0.008) * 100; // 20% off, trim
