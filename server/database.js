@@ -10,14 +10,11 @@ const getAllProductAndSellerInfo = (id, callback) => {
       // try to access the db and get some data
       const db = client.db('reburke');
       db.collection('reburke').findOne({ id: parseInt(id, 10) }, (error, result) => {
-        if (error) {
-          throw error;
+        if (error || !result) {
+          const emptyResultError = new Error('Not Found');
+          emptyResultError.status = 404;
+          callback(emptyResultError, { product: {}, seller: { reviews: { rating: 0 } } });
         } else {
-          if (!result) {
-            const emptyResultError = new Error('Not Found');
-            emptyResultError.status = 404;
-            callback(emptyResultError, { product: {}, seller: { reviews: { rating: 0 } } });
-          }
           const data = {
             product: result.product,
             seller: result.seller
