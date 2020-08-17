@@ -29,7 +29,9 @@ class Sidebar extends React.Component {
   }
 
   categoryStyleBrand() {
-    const text = `${this.state.product.category} > ${this.state.product.style} > ${this.state.product.brand}`;
+    const text = `${this.state.product.category}`
+       + ` > ${this.state.product.style}`
+       + ` > ${this.state.product.brand}`;
     return (
       <div className="sb-smallText sb-grey">
         {text}
