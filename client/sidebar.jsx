@@ -28,6 +28,15 @@ class Sidebar extends React.Component {
       .catch(() => null);
   }
 
+  categoryStyleBrand() {
+    const text = `${this.state.product.category} > ${this.state.product.style} > ${this.state.product.brand}`;
+    return (
+      <div className="sb-smallText sb-grey">
+        {text}
+      </div>
+    );
+  }
+
   condition() {
     return (
       <div className="sb-smallText sb-green sb-dashBottomBorder">
@@ -156,16 +165,17 @@ class Sidebar extends React.Component {
       <div>
         <Style.Global />
         <div className="sb-whole">
+          {this.categoryStyleBrand()}
           <div className="sb-bigText">{this.state.product.name}</div>
           {this.condition()}
           {this.cost()}
           <button className="sb-bigButton">Add to Cart</button>
           <div>
-            <button className="sb-smallButton">
+            <button className="sb-smallButton sb-bold">
               Make an Offer
             </button>
             <button
-              className="sb-smallButton sb-floatRight"
+              className="sb-smallButton sb-bold sb-floatRight"
               id="watchButton"
               onClick={this.watchProduct.bind(this)}
             >
@@ -191,9 +201,11 @@ class Sidebar extends React.Component {
             </div>
           </section>
           <div>
-            <button className="sb-smallButton sb-smallText">Message Seller</button>
-            <button className="sb-smallButton sb-smallText sb-floatRight">
-              Payment and Returns
+            <button className="sb-smallButton sb-smallText sb-bold">
+              Message Seller
+            </button>
+            <button className="sb-smallButton sb-smallText sb-bold sb-floatRight">
+              Payment &#38; Returns
             </button>
           </div>
         </div>
