@@ -18,7 +18,11 @@ app.get('/api/item/:id', (req, res) => {
   const id = req.url.substr(10);
   // look for the first data in the list if no id is passed in
   db.getAllProductAndSellerInfo(id || 0, (err, result) => {
-    res.send(result);
+    if (err) {
+      res.status(404).send('Not found!');
+    } else {
+      res.send(result);
+    }
   });
 });
 

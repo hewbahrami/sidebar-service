@@ -13,6 +13,11 @@ const getAllProductAndSellerInfo = (id, callback) => {
         if (error) {
           throw error;
         } else {
+          if (!result) {
+            const emptyResultError = new Error('Not Found');
+            emptyResultError.status = 404;
+            callback(emptyResultError, { product: {}, seller: { reviews: { rating: 0 } } });
+          }
           const data = {
             product: result.product,
             seller: result.seller
