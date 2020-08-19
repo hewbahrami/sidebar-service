@@ -10,7 +10,7 @@ const guitarCategories = ['Acoustic', 'Bass', 'Electric'];
 const generateProductAndSeller = () => {
   var productAndSellerArray = [];
 
-  for (var i = 0; i < 100; i++) {
+  for (var i = 1; i <= 100; i++) {
     var product = {
       name: faker.name.findName(),
       condition: conditions[Math.floor(Math.random() * 3)],
