@@ -13,9 +13,10 @@ app.use(express.static(`${__dirname}/../public`));
 app.use('/item/:id', express.static(`${__dirname}/../public`));
 app.use(bodyParser.json());
 
-app.get('/api/item/:id', (req, res) => {
+app.get('/sb/api/item/:id', (req, res) => {
   // get the id of request product
-  const id = req.url.substr(10);
+  const idIndex = req.url.indexOf('item') + 5;
+  const id = req.url.substr(idIndex);
   // look for the first data in the list if no id is passed in
   db.getAllProductAndSellerInfo(id || 0, (err, result) => {
     if (err) {
