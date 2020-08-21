@@ -7,7 +7,8 @@
     "server-dev": "nodemon server/server.js",
     "build": "webpack --config webpack.config.js",
     "seed": "node ./server/seeding.js",
-    "test": "jest --detectOpenHandles --coverage"
+    "test": "jest --detectOpenHandles --coverage",
+    "build-production": "webpack -p"
   },
   "repository": {
     "type": "git",

@@ -9,6 +9,10 @@ app.use('/', (req, res, next) => {
   next();
 });
 
+app.get('*/bundle.js', (req, res) => {
+  res.redirect('https://hrr47-fec-sidebar.s3.ap-northeast-2.amazonaws.com/js/bundle.js');
+});
+
 app.use(express.static(`${__dirname}/../public`));
 app.use('/item/:id', express.static(`${__dirname}/../public`));
 app.use(bodyParser.json());
