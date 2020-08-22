@@ -34,7 +34,7 @@ Execute all of the following commands from the repository's root directory.
 
 ### Install Dependencies
 
-npm start
+npm install
 
 ### Seeding
 
